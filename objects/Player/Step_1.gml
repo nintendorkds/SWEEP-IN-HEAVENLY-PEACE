@@ -183,6 +183,7 @@ if(animation=0)
 						if(image_index>=2)and(image_index<3)
 						{
 							animstep=1
+							playsound(StepSound,.1,.05)
 							instance_create_depth(x+xvel,y+12,depth-1,Effect,{sprite_index:SmallDustSpr,maxframes:2})
 						}
 					}
@@ -191,6 +192,7 @@ if(animation=0)
 						if(image_index>=5)
 						{
 							animstep=0
+							playsound(StepSound,.1,.05)
 							instance_create_depth(x+xvel,y+12,depth-1,Effect,{sprite_index:SmallDustSpr,maxframes:2})
 						}
 					}
@@ -198,15 +200,22 @@ if(animation=0)
 			}
 			else
 			{
-				//idle
-				if(crouchframes<=0)
+				if(up)
 				{
-					sprite_index=JanitorSpr
+					sprite_index=JanitorThumbsUpSpr
 				}
 				else
 				{
-					sprite_index=JanitorLandSpr
-					crouchframes-=1
+					//idle
+					if(crouchframes<=0)
+					{
+						sprite_index=JanitorSpr
+					}
+					else
+					{
+						sprite_index=JanitorLandSpr
+						crouchframes-=1
+					}
 				}
 				animstep=0
 			}
@@ -280,6 +289,7 @@ if(jumpbuffer>0)and(animation=0)
 			jumpingrn=1
 			animation=1
 			sprite_index=JanitorRollSpr
+			playsound(SlideSound,.2,.5)
 		}
 	}
 	else
@@ -304,6 +314,7 @@ if(jumpbuffer>0)and(animation=0)
 			jumpingrn=1
 			animation=1
 			sprite_index=JanitorRollSpr
+			playsound(JumpSound,.2,.5)
 		}
 		else
 		{
@@ -315,6 +326,7 @@ if(jumpbuffer>0)and(animation=0)
 				coyote=0
 				jumpbuffer=0
 				jumpingrn=1
+				playsound(JumpSound,.2,.5)
 			}
 		}
 	}
@@ -348,8 +360,9 @@ else
 
 var owneriherit = self
 //ATTACK
-if(animation<2)and(primarybuffer>0)and(down=0 or grounded)
+if(animation<2)and(primarybuffer>0)and(down<.5 or grounded)
 {
+	playsound(SweepSound,.25,.75)
 	if(abs(right-left)>0){image_xscale=sign(right-left)}
 	image_index=0
 	animation=2
@@ -367,7 +380,7 @@ if(animation<2)and(primarybuffer>0)and(down=0 or grounded)
 	if(coyote<=0)and(yvel>0){yvel=0}
 }
 //Roll Attack UNUSED
-if(animation=1)and(primarybuffer>0)and(down=0)and(1=0)
+if(animation=1)and(primarybuffer>0)and(down)and(1=0)
 {
 	spinning=18
 	animation=3
@@ -394,6 +407,7 @@ if(animation=3)
 //broom pogo
 if(coyote<=0)and(down)and(animation<2)and(primarybuffer>0)
 {
+	playsound(SweepSound,.1,.5)
 	primarybuffer=0
 	animation=4
 	image_index=0
@@ -418,6 +432,7 @@ if(animation=4)
 	}
 	if(place_meeting(x,y+10,walllayer) or place_meeting(x,y+yvel*1.1,walllayer))and(yvel>0)
 	{
+		playsound(BroomPogoSound,.1,.5)
 		image_speed=1
 		instance_create_depth(x,y+14,depth-1,Effect)
 		yvel=-.9*yvel

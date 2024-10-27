@@ -1,6 +1,7 @@
 var check = id
 if(array_contains(other.hitboxarray,check)=0)
 {
+	playsound(HitSound,.1)
 	array_push(other.hitboxarray,check)
 	var hitdir = point_direction(x,y,other.x,other.y)
 	other.xvel=lengthdir_x(5,hitdir)
@@ -10,5 +11,9 @@ if(array_contains(other.hitboxarray,check)=0)
 	if(other.object_index!=EnemyCorpse)
 	{
 		instance_destroy(other)
+	}
+	else
+	{
+		other.timer=0
 	}
 }

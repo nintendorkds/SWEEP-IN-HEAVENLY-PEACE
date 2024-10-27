@@ -1,2 +1,2 @@
-x=(Player.x+x)/2
-y=(Player.y+y)/2
+x=(Player.x+x+x)/3
+y=(Player.y+y+y)/3
