@@ -1,0 +1,9 @@
+if(y<=other.bbox_top)and(yvel>0)and(other.object_index!=EnemyCorpse)
+{
+	instance_create_depth(other.x,other.y,depth-100,Effect,{sprite_index:KillSpr,maxframes:4.5})
+	instance_create_depth(x,other.bbox_top,depth-1,Effect)
+	yvel=-4
+	animation=0
+	other.yvel+=4
+	instance_destroy(other)
+}

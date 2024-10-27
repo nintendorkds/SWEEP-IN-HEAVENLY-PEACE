@@ -1,0 +1,1 @@
+if(timer mod 4 > 2)or(timer<45){draw_self()}
