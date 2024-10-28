@@ -107,9 +107,20 @@ else
 	grounded=0
 }
 
+//sets up wall slide availablility
+var wallslideyvel = -1
+var canwallslide = 0
+var walljcheck = 3
+if((place_meeting(x+walljcheck,y,walllayer)) or (place_meeting(x-walljcheck,y,walllayer))) and (yvel>wallslideyvel) and coyote<=0
+{
+	canwallslide=1
+	canwalljumpframes=4
+}
+
 //gravity and halting yvel
 if(grounded)
 {
+	canwalljumpframes=0
 	yvel=0
 	coyote = 8
 }
@@ -121,13 +132,7 @@ else
 
 var tempwalk = walkspeed
 
-//sets up wall slide availablility
-var wallslideyvel = -1
-var canwallslide = 0
-if((place_meeting(x+((right-left)*8),y,walllayer))or place_meeting(x+(sign(xvel)*5),y,walllayer)) and (yvel>wallslideyvel)
-{
-	canwallslide=1
-}
+
 
 if(sprite_index=JanitorRollSpr)or(animation=3)
 {
@@ -140,7 +145,7 @@ if(sprite_index=JanitorRollSpr)or(animation=3)
 
 //animation shit
 
-if(xvel!=0)and(coyote>0)and(animation=0){image_xscale=sign(xvel)}
+if(xvel!=0)and(grounded)and(animation=0){image_xscale=sign(xvel)}
 
 if(animation=0)
 {
@@ -227,23 +232,14 @@ if(animation=0)
 		if(yvel>wallslideyvel)
 		{
 			//Wallslide
-			if(canwallslide)
+			if(canwallslide)and(place_meeting(x+(sign(right-left)*walljcheck),y,walllayer))
 			{
+				if(place_meeting(x+walljcheck,y,walllayer)){image_xscale=-1}else{image_xscale=1}
 				if(timer mod 6 = 1)
 				{
 					instance_create_depth(x-(image_xscale*4),y,depth-1,Effect,{image_angle:image_xscale*-90,sprite_index:SmallDustSpr,maxframes:2})
 				}
-				
-				if(sign(left-right)!=0)
-				{
-					image_xscale=sign(left-right)
-				}
-				else
-				{
-					if(abs(xvel)>.1){image_xscale=-sign(xvel)}
-				}
 				sprite_index=JanitorWallSlideSpr
-				canwalljumpframes=4
 				//wall slide slows your fall
 				yvel=clamp(yvel,-4,2)
 			}
@@ -297,15 +293,8 @@ if(jumpbuffer>0)and(animation=0)
 		if(canwalljumpframes>0)
 		{
 			//walljump
+			if(place_meeting(x+walljcheck,y,walllayer)){image_xscale=-1}else{image_xscale=1}
 			image_speed=1
-			if(place_meeting(x+(sign(right-left)*5),y,walllayer))
-			{
-				image_xscale=sign(left-right)
-			}
-			else
-			{
-				if(abs(xvel)>.1){image_xscale=-sign(xvel)}
-			}
 			instance_create_depth(x,y,depth-1,Effect,{image_angle:image_xscale*-90})
 			yvel=-4.5
 			coyote=0
@@ -314,7 +303,7 @@ if(jumpbuffer>0)and(animation=0)
 			jumpingrn=1
 			animation=1
 			sprite_index=JanitorRollSpr
-			playsound(JumpSound,.2,.5)
+			playsound(JumpSound,.2,.3)
 		}
 		else
 		{
@@ -326,7 +315,7 @@ if(jumpbuffer>0)and(animation=0)
 				coyote=0
 				jumpbuffer=0
 				jumpingrn=1
-				playsound(JumpSound,.2,.5)
+				playsound(JumpSound,.2,.3)
 			}
 		}
 	}
@@ -369,7 +358,7 @@ if(animation<2)and(primarybuffer>0)and(down<.5 or grounded)
 	instance_create_depth(x,y,depth,Hitbox,
 	{
 		image_xscale:3,
-		image_yscale:2,
+		image_yscale:1.8,
 		animation,
 		refx:image_xscale*8,
 		owner:owneriherit
@@ -377,7 +366,7 @@ if(animation<2)and(primarybuffer>0)and(down<.5 or grounded)
 	primarybuffer=0
 	image_speed=1
 	sprite_index=JanitorSweepSpr
-	if(coyote<=0)and(yvel>0){yvel=0}
+	if(coyote<=0)and(yvel>.5){yvel=.5}
 }
 //Roll Attack UNUSED
 if(animation=1)and(primarybuffer>0)and(down)and(1=0)
@@ -471,5 +460,8 @@ if(mag)and sprite_index!=JanitorSlideSpr and sprite_index!=JanitorDuckSpr
 //button releases
 if(jumppressed)and(jump=0)and(tertiary=0){jumppressed=0}
 if(primarypressed)and(primary=0)and(secondary=0){primarypressed=0}
+
+//ultimate failsafe
+if(image_xscale>0){image_xscale=1}else{image_xscale=-1}
 
 update_physics()

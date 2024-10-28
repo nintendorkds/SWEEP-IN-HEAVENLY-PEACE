@@ -34,6 +34,7 @@
   "properties":[
     {"$GMObjectProperty":"v1","%Name":"grounded","filters":[],"listItems":[],"multiselect":false,"name":"grounded","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0","varType":0,},
     {"$GMObjectProperty":"v1","%Name":"cooldown","filters":[],"listItems":[],"multiselect":false,"name":"cooldown","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0","varType":0,},
+    {"$GMObjectProperty":"v1","%Name":"image_xscale","filters":[],"listItems":[],"multiselect":false,"name":"image_xscale","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"choose(-1,1)","varType":0,},
   ],
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
@@ -42,6 +43,9 @@
     "name":"RickySpr",
     "path":"sprites/RickySpr/RickySpr.yy",
   },
-  "spriteMaskId":null,
+  "spriteMaskId":{
+    "name":"RickySpr",
+    "path":"sprites/RickySpr/RickySpr.yy",
+  },
   "visible":true,
 }

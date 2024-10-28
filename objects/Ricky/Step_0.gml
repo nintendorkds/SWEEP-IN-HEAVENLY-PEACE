@@ -25,7 +25,7 @@ if(place_meeting(x,y+1,Wall))or(place_meeting(x,y+1,walllayer))
 }
 else
 {
-	xvel=sign(image_xscale)*choose(3,3.5,2.5)
+	xvel=sign(image_xscale)*3
 	grounded=0
 	yvel+=.25
 	if(place_meeting(x+xvel*1.5,y,walllayer)){image_xscale*=-1}
@@ -35,10 +35,11 @@ if(cooldown<=0)
 {
 	if(distance_to_object(targ)<80)and(grounded)
 	{
+		playsound(JumpSound,.2,.3)
 		instance_create_depth(x+8,y+8,depth-1,Effect)
 		instance_create_depth(x-8,y+8,depth-1,Effect)
 		if(targ.x>x){image_xscale=-1}else{image_xscale=1}
-		yvel=-6
+		yvel=choose(-6,-5,-7)
 		sprite_index=RickyJumpSpr
 		cooldown=10
 	}

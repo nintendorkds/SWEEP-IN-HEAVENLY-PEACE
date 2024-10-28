@@ -1,0 +1,1 @@
+if(owner.animation!=animation)or(owner.image_index>4){instance_destroy()}
