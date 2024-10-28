@@ -1,8 +1,5 @@
 depth=-y-32
 
-//MAKE WALLJUMP AND SLIDE JUMP ANIMATIONS AND THEN IMPLEMENT THEM
-//MAKE SWEEP ANIMATION
-
 timer+=1
 
 //controller stuff -------------------------------------------------
@@ -20,10 +17,10 @@ if(controller=0)
 		rsdown=keyboard_check(ord("S"));
 		
 		primary=keyboard_check(ord("Z"));
-		secondary=keyboard_check(ord("X"));
-		tertiary=keyboard_check(ord("C"));
-		grab=keyboard_check(ord("V"));
-		jump=keyboard_check(vk_lshift);
+		secondary=keyboard_check(vk_lshift);
+		tertiary=keyboard_check(ord("V"));
+		grab=keyboard_check(ord("C"));
+		jump=keyboard_check(ord("X"));
 		pocket1=keyboard_check(vk_lcontrol);
 		
 		escape=keyboard_check(vk_escape);

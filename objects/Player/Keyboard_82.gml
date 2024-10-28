@@ -1,1 +1,1 @@
-game_restart()
+with(Ghost){instance_destroy()}

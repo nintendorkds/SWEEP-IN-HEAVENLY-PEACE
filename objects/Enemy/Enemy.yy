@@ -34,6 +34,7 @@
     {"$GMObjectProperty":"v1","%Name":"deathsprite","filters":[],"listItems":[],"multiselect":false,"name":"deathsprite","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resource":{"name":"HumpyCorpseSpr","path":"sprites/HumpyCorpseSpr/HumpyCorpseSpr.yy",},"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"HumpyCorpseSpr","varType":5,},
     {"$GMObjectProperty":"v1","%Name":"hitboxarray","filters":[],"listItems":[],"multiselect":false,"name":"hitboxarray","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"[]","varType":0,},
     {"$GMObjectProperty":"v1","%Name":"depthupdate","filters":[],"listItems":[],"multiselect":false,"name":"depthupdate","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"true","varType":3,},
+    {"$GMObjectProperty":"v1","%Name":"disappear","filters":[],"listItems":[],"multiselect":false,"name":"disappear","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0","varType":0,},
   ],
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
