@@ -1,5 +1,5 @@
 //ghost counter set up
-var ghostcount = clamp(instance_number(Enemy)-instance_number(EnemyCorpse),0,999)
+var ghostcount = clamp(instance_number(Ghost),0,999)
 draw_set_halign(fa_left)
 draw_set_valign(fa_middle)
 draw_set_font(DefaultFont)

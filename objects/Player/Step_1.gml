@@ -349,7 +349,7 @@ else
 
 var owneriherit = self
 //ATTACK
-if(animation<2)and(primarybuffer>0)and(down<.5 or grounded)
+if(animation<2 or animation = 4)and(primarybuffer>0)and(down<.5 or grounded)
 {
 	playsound(SweepSound,.25,.75)
 	if(abs(right-left)>0){image_xscale=sign(right-left)}
@@ -456,10 +456,19 @@ if(mag)and sprite_index!=JanitorSlideSpr and sprite_index!=JanitorDuckSpr
 	xvel+=(right-left)*tempwalk
 }
 
+//echo target
+if(grab)and(grabpressed=0)and(instance_exists(Ghost))
+{
+	grabpressed=1
+	var temptarg = instance_nearest(x,y,Ghost)
+	instance_create_depth(x,y,depth,Echo,{targ:temptarg})
+}
+
 
 //button releases
 if(jumppressed)and(jump=0)and(tertiary=0){jumppressed=0}
 if(primarypressed)and(primary=0)and(secondary=0){primarypressed=0}
+if(grabpressed)and(grab=0){grabpressed=0}
 
 //ultimate failsafe
 if(image_xscale>0){image_xscale=1}else{image_xscale=-1}
