@@ -1,1 +1,0 @@
-with(Ghost){instance_destroy()}
