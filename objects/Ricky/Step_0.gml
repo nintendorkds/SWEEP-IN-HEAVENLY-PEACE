@@ -39,7 +39,7 @@ if(cooldown<=0)
 		instance_create_depth(x+8,y+8,depth-1,Effect)
 		instance_create_depth(x-8,y+8,depth-1,Effect)
 		if(targ.x>x){image_xscale=-1}else{image_xscale=1}
-		yvel=choose(-6,-5,-7)
+		yvel=-5
 		sprite_index=RickyJumpSpr
 		cooldown=10
 	}

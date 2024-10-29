@@ -41,6 +41,7 @@ if(started = 0)
 }
 else
 {
+	audio_stop_sound(music)
 	started+=1
 	if(started>=30)
 	{

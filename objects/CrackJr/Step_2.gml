@@ -8,7 +8,7 @@ if(timer>=5)
 	var wallmap = layer_tilemap_get_id(walllayer);
 	if(place_meeting(x,y,wallmap))and(place_meeting(x,y,BreakableZone))
 	{
-		playsound(EnemyDieSound,.5)
+		playsound(StepSound,.5,.25)
 		tilemap_set(wallmap, 0, gridX, gridY);
 		instance_create_depth(x,y,0,Effect,{maxframes:5,sprite_index:HitDustSpr})
 		var tempdir = 0

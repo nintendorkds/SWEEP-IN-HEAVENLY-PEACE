@@ -44,5 +44,11 @@ else
 	started=0
 	pressed=1
 	image_index+=1
-	if(image_index>=maxframes){room_goto(myroom)}
+	if(sprite_index=Cutscene2)and(image_index>1)and(imtriggered=0)
+	{
+		imtriggered=1
+		audio_stop_sound(music)
+		music = audio_play_sound(mus_gma,0,0)
+	}
+	if(image_index>=maxframes){audio_stop_sound(music);room_goto(myroom)}
 }

@@ -1,7 +1,7 @@
 //screentransition
 if(endme>0)
 {
-	screentransitiony+=8
+	screentransitiony+=6
 }
 if(screentransitiony>0)
 {
@@ -29,7 +29,7 @@ if(screentransitiony>0)
 var ghostcount = clamp(instance_number(Ghost),0,999)
 
 //win
-if(ghostcount<=0)and(endme=0){endme=1}
+if(ghostcount<=0)and(endme=0){endme=1;audio_stop_sound(music);audio_play_sound(mus_win,1,0)}
 //timer set up
 var minute = (floor(gametime/3600)-1)
 if(minute<0){minute+=12}
@@ -63,6 +63,7 @@ if((floor(gametime/3600)>=5)and(gametime mod 60 <= 10))or(endme=2){draw_set_colo
 //loss
 if(floor(gametime/3600)>=6)and(endme=0)
 {
+	audio_stop_sound(music);audio_play_sound(mus_timesup,1,0)
 	endme=2;
 	with(Ghost)
 	{

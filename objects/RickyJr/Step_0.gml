@@ -38,7 +38,7 @@ if(cooldown<=0)
 		playsound(JumpSound,.2,.3)
 		instance_create_depth(x,y+4,depth-1,Effect)
 		if(targ.x>x){image_xscale=-1}else{image_xscale=1}
-		yvel=choose(-3,-4,-3.5)
+		yvel=-4
 		sprite_index=RickyJrJumpSpr
 		cooldown=10
 	}

@@ -9,7 +9,7 @@
   "bitRate":128,
   "compression":0,
   "conversionMode":0,
-  "duration":0.105625,
+  "duration":0.211271,
   "name":"HitSound",
   "parent":{
     "name":"Sounds",
@@ -21,5 +21,5 @@
   "sampleRate":44100,
   "soundFile":"HitSound.wav",
   "type":0,
-  "volume":1.0,
+  "volume":0.35,
 }

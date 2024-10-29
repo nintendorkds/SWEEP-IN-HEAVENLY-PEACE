@@ -169,34 +169,25 @@ if(animation=0)
 		{
 			if(abs(right-left)>0)and(abs(xvel)>.1)
 			{
-				if(place_meeting(x+xvel,y,Wall))or(place_meeting(x+xvel,y,walllayer))
+				//walking
+				image_speed=abs(xvel/2)
+				sprite_index=JanitorWalkSpr
+				if(animstep=0)
 				{
-					//pushing on wall
-					sprite_index=JanitorPushSpr
-					animstep=0
+					if(image_index>=2)and(image_index<3)
+					{
+						animstep=1
+						playsound(StepSound,.1,.05)
+						instance_create_depth(x+xvel,y+12,depth-1,Effect,{sprite_index:SmallDustSpr,maxframes:2})
+					}
 				}
 				else
 				{
-					//walking
-					image_speed=abs(xvel/2)
-					sprite_index=JanitorWalkSpr
-					if(animstep=0)
+					if(image_index>=5)
 					{
-						if(image_index>=2)and(image_index<3)
-						{
-							animstep=1
-							playsound(StepSound,.1,.05)
-							instance_create_depth(x+xvel,y+12,depth-1,Effect,{sprite_index:SmallDustSpr,maxframes:2})
-						}
-					}
-					else
-					{
-						if(image_index>=5)
-						{
-							animstep=0
-							playsound(StepSound,.1,.05)
-							instance_create_depth(x+xvel,y+12,depth-1,Effect,{sprite_index:SmallDustSpr,maxframes:2})
-						}
+						animstep=0
+						playsound(StepSound,.1,.05)
+						instance_create_depth(x+xvel,y+12,depth-1,Effect,{sprite_index:SmallDustSpr,maxframes:2})
 					}
 				}
 			}
@@ -456,6 +447,7 @@ if(mag)and sprite_index!=JanitorSlideSpr and sprite_index!=JanitorDuckSpr
 //echo target
 if(grab)and(grabpressed=0)and(instance_exists(Ghost))
 {
+	playsound(EchoSound,.25)
 	grabpressed=1
 	var temptarg = instance_nearest(x,y,Ghost)
 	instance_create_depth(x,y,depth,Echo,{targ:temptarg})
@@ -466,6 +458,12 @@ if(grab)and(grabpressed=0)and(instance_exists(Ghost))
 if(jumppressed)and(jump=0)and(tertiary=0){jumppressed=0}
 if(primarypressed)and(primary=0)and(secondary=0){primarypressed=0}
 if(grabpressed)and(grab=0){grabpressed=0}
+
+//falling sparkles
+if(yvel>4.5)and(timer mod 6 = 0)and(sprite_index=JanitorPogoSpr)
+{
+	instance_create_depth(other.x,other.y,depth-100,Effect,{sprite_index:HitStarSpr,maxframes:6,image_index:choose(1,1,2,2,3)})
+}
 
 //ultimate failsafe
 if(image_xscale>0){image_xscale=1}else{image_xscale=-1}
